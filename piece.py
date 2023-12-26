@@ -36,10 +36,19 @@ class Colour:
 class Piece():
 
     def __init__(self) -> None:
-        self.matrix = [[0,0,0],[0,0,0], [0,0,0]] #Row vectors
+        self.matrix = [] #Row vectors
     
-    def addSide(self, colour, axis):
-        pass  
+    def addSide(self, colour, axis, direction):
+        if axis == "k":
+            self.matrix.append([0,0,Colour(colour, direction)])
+        elif axis == "j":
+            self.matrix.append([0, Colour(colour, direction), 0])
+        elif axis == "i":
+            self.matrix.append([Colour(colour, direction), 0, 0])
+        
+        else:
+            print("error")    
+        # print(self.matrix)
 
     def rotate(self, axis, clockwise):
         new_matrix = [[0,0,0], [0,0,0], [0,0,0]]
